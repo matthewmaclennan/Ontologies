@@ -6,6 +6,8 @@ library(RCurl)
 CMO.owl<-htmlTreeParse(getURL("http://www.rsc.org/ontologies/CMO/CMO_OWL.owl"),useInternalNode=T)
 #obtain the main technique names
 xpathApply(CMO.owl,"//class/label")
+#or the same as a vector
+CMO_labels<-unlist(xpathApply(CMO.owl,"//class/label",xmlValue))
 #obtain the vector of synonyms. The unlisted xpath results contain "\n" characters with multiple spaces, so strsplit() is used
 #to clean this up.
 CMO_synonyms<-unlist(strsplit(unlist(xpathApply(CMO.owl,"//class/hasexactsynonym",xmlValue)),"\n +"))
