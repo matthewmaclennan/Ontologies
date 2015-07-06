@@ -14,3 +14,10 @@ CMO_synonyms<-unlist(strsplit(unlist(xpathApply(CMO.owl,"//class/hasexactsynonym
 #the synonyms "hasexactsynonym" are sibling nodes to the "label" nodes (which are children nodes of "class"), 
 #so lapply() to the ancestor node ("class"), then go to the "hasexactsynonym node". Using lapply() will help to assemble the 
 #vector for searching.
+CMObigList<-c()
+
+for(i in 1:length(xpathApply(CMO.owl,"//class/label"))){
+  CMObigList<-c(CMObigList,CMO_labels[i],
+    unlist(strsplit(unlist(xpathApply(xpathApply(CMO.owl,"//class/label")[[i]],"ancestor::class/hasexactsynonym",xmlValue)),
+    "\n +")))
+}
