@@ -21,3 +21,5 @@ for(i in 1:length(xpathApply(CMO.owl,"//class/label"))){
     unlist(strsplit(unlist(xpathApply(xpathApply(CMO.owl,"//class/label")[[i]],"ancestor::class/hasexactsynonym",xmlValue)),
     "\n +")))
 }
+#search directly from ontology
+#Find terms and search individually one by one. Probably easier to keep track of words.
