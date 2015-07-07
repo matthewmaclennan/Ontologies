@@ -18,7 +18,7 @@ CMObigList<-c()
 
 for(i in 1:length(xpathApply(CMO.owl,"//class/label"))){
   CMObigList<-c(CMObigList,CMO_labels[i],
-    unlist(strsplit(unlist(xpathApply(xpathApply(CMO.owl,"//class/label")[[i]],"ancestor::class/hasexactsynonym",xmlValue)),
+    unlist(strsplit(as.character(unlist(xpathApply(xpathApply(CMO.owl,"//class/label")[[i]],"ancestor::class/hasexactsynonym",xmlValue))),
     "\n +")))
 }
 #search directly from ontology
